@@ -55,7 +55,9 @@ Users should be able to:
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
-- Funciones asíncronas en JS
+- Asynchronous functions in JS
+- Fetch API
+- Event listeners
 - JSON
 - DOM manipulation
 
