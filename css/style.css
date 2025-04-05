@@ -161,6 +161,7 @@ aside {
 	overflow-y: auto;
 	scrollbar-width: thin;
 	scrollbar-gutter: stable;
+	overscroll-behavior: contain;
 }
 .cart-item {
 	position: relative;
@@ -236,6 +237,7 @@ aside {
     border-radius: 12px;
 	scrollbar-gutter: stable;
 	scrollbar-width: thin;
+	overscroll-behavior: contain;
 
 	.modal-product {
 		display: grid;
