@@ -250,6 +250,9 @@ aside {
 			width: 60px;
 			border-radius: 8px;
 		}
+		.modal-product-title {
+			font-size: 1rem;
+		}
         .modal-product-quantity {
             color: var(--orange);
             font-weight: 600;
