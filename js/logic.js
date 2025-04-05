@@ -1,4 +1,7 @@
 const productContainer = document.getElementById("main");
+const productCardTemplate = document.getElementById("product-card-template");
+const cartItemTemplate = document.getElementById("cart-item-template");
+const modalProductTemplate = document.getElementById("modal-product-template");
 
 const cartList = document.getElementById("cart-list");
 const cartEmptyDiv = document.getElementById("cart-empty");
@@ -54,35 +57,24 @@ function updateProductCards(productData) {
 	productData.forEach((product) => {
 		const productName = product.name || "Unknown Product";
 		const productPrice = product.price !== undefined ? formatPrice(product.price) : "N/A";
+		const productCategory = product.category || "Unknown Category";
 
-		const card = document.createElement("article");
-		card.dataset.productName = product.name;
-		card.innerHTML = `
-        <img class="product-img" src="${getImageSrc(product)}" alt="${
-			productName
-		}">
-        <div class="product-cart-btn">
-            <div class="add-to-cart">
-                <img src="assets/images/icon-add-to-cart.svg" alt="Cart Icon"> Add to Cart
-            </div>
-            <div class="quantity-controls">
-                <button class="product-decrement-btn">
-                    <img src="assets/images/icon-decrement-quantity.svg" alt="Minus Icon">
-                </button>
-                <span class="product-quantity" data-quantity="0">0</span>
-                <button class="product-increment-btn">
-                    <img src="assets/images/icon-increment-quantity.svg" alt="Plus Icon">
-                </button>
-            </div>
-        </div>
-        <div class="product-info">
-            <span class="product-category">${product.category}</span>
-            <h2 class="product-name">${productName}</h2>
-            <span class="product-price">${productPrice}</span>
-        </div>
-        `;
+
+		// Clone the template content for each product
+		const templateContent = productCardTemplate.content.cloneNode(true);
+
+		const card = templateContent.querySelector(".product-card");
+
+		card.dataset.productName = productName;
 
 		const productImg = card.querySelector(".product-img");
+		productImg.src = getImageSrc(product);
+		productImg.alt = productName;
+
+		card.querySelector(".product-category").textContent = productCategory;
+		card.querySelector(".product-name").textContent = productName;
+		card.querySelector(".product-price").textContent = productPrice;
+
 		const button = card.querySelector(".product-cart-btn");
 		const addToCartDiv = card.querySelector(".add-to-cart");
 		const quantityControls = card.querySelector(".quantity-controls");
@@ -136,17 +128,15 @@ function updateCart() {
 	cartTotalPrice.textContent = formatPrice(getTotalPrice());
 
 	if (cart.length > 0) {
-		cart.forEach((item) => {
-			const cartItem = document.createElement("article");
-			cartItem.classList.add("cart-item");
+		const fragment = document.createDocumentFragment();
 
-			cartItem.innerHTML = `
-            <h5 class="cart-item-title">${item.name}</h5>
-            <span class="cart-item-quantity"><span>${
-							item.quantity
-						}</span>x</span>
-            <span class="cart-item-price"">${formatPrice(item.price)}</span>
-            <button class="remove-item-btn"><img src="assets/images/icon-remove-item.svg" alt="Remove item"></button>`;
+		cart.forEach((item) => {
+			const templateContent = cartItemTemplate.content.cloneNode(true);
+			const cartItem = templateContent.querySelector(".cart-item");
+
+			cartItem.querySelector(".cart-item-title").textContent = item.name;
+			cartItem.querySelector(".cart-item-quantity-value").textContent = item.quantity;
+			cartItem.querySelector(".cart-item-price").textContent = formatPrice(item.price);
 
 			const removeItemBtn = cartItem.querySelector(".remove-item-btn");
 
@@ -154,8 +144,9 @@ function updateCart() {
 				removeFromCart(item.name);
 			});
 
-			cartList.appendChild(cartItem);
+			fragment.appendChild(cartItem);
 		});
+		cartList.appendChild(fragment);
 	}
 }
 
@@ -303,22 +294,23 @@ function updateModalUI() {
     if (cart.length > 0) {
 		confModalData = cart;
 
+		const fragment = document.createDocumentFragment();
+
 		confModalData.forEach((item) => {
-			const modalProduct = document.createElement("article");
-            modalProduct.classList.add("modal-product");
+			const templateContent = modalProductTemplate.content.cloneNode(true);
+			const modalProduct = templateContent.querySelector(".modal-product");
 
-			modalProduct.innerHTML = `
-            <img class="modal-product-image" src="${item.image}" alt="${item.name}" />
-            <h5 class="modal-product-title">${item.name}</h5>
-            <div>
-                <span class="modal-product-quantity"><span>${
-							item.quantity
-						}</span>x</span>
-                <span class="modal-product-price"">${formatPrice(item.price)}</span>
-            <div/>`;
+			const modalProductImg = modalProduct.querySelector(".modal-product-image");
+			modalProductImg.src = item.image;
+			modalProductImg.alt = item.name;
+			modalProduct.querySelector(".modal-product-title").textContent = item.name;
+			modalProduct.querySelector(".modal-product-quantity-value").textContent = item.quantity;
+			modalProduct.querySelector(".modal-product-price").textContent = formatPrice(item.price);
 
-			modalProductList.appendChild(modalProduct);
+
+			fragment.appendChild(modalProduct);
 		});
+		modalProductList.appendChild(fragment);
 	}
 }
 cartConfirmBtn.addEventListener("click", () => {
