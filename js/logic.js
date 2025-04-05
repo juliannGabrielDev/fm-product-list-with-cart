@@ -77,7 +77,7 @@ function updateProductCards(productData) {
         </div>
         <div class="product-info">
             <span class="product-category">${product.category}</span>
-            <h4 class="product-name">${productName}</h4>
+            <h2 class="product-name">${productName}</h2>
             <span class="product-price">${productPrice}</span>
         </div>
         `;

@@ -119,10 +119,14 @@ aside {
 		}
 	}
 }
+.product-info {
+	transform: translateY(-20px);
+}
 .product-category {
 	color: var(--rose-400);
 }
 .product-name {
+	font-size: 1rem;
 	color: var(--rose-900);
 }
 .product-price {
@@ -221,9 +225,13 @@ aside {
 	}
 }
 #modal-product-list {
-    background-color: var(--rose-100);
+	max-height: 50vh;
 	margin-bottom: 12px;
+	overflow-y: auto;
+    background-color: var(--rose-100);
     border-radius: 12px;
+	scrollbar-gutter: stable;
+	scrollbar-width: thin;
 
 	.modal-product {
 		display: grid;
