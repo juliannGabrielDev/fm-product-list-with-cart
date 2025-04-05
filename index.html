@@ -1,125 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Product list with cart</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" type="text/css" href="css/utility-classes.css">
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./assets/images/favicon-32x32.png"
+		/>
 
-  <!-- Feel free to remove these styles or customize in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <h1>Desserts</h1>
-    </header>
-    <main id="main">
-      <!-- Product cards goes here -->
-    </main>
-    <aside>
-      <section class="cart">
-        <h2 class="cart-title">Your Cart (<span id="cart-quantity">0</span>)</h2>
-        <div class="cart-content">
-          <div id="cart-empty" class="cart-empty active">
-            <img class="cart-img" src="assets/images/illustration-empty-cart.svg" alt="No products">
-            <p>Your added items will appear here</p>
-          </div>
-          <div id="cart-with-products" class="cart-with-desserts">
-            <div id="cart-list" class="cart-list">
-              <!-- Cart items goes here -->
-            </div>
-            <div class="cart-total">
-              <span>Order Total</span>
-              <span id="cart-total-price" class="cart-total-price">
-                <!-- Total price goes here -->
-              </span>
-            </div>
-            <p class="cart-disclaimer"><img src="assets/images/icon-carbon-neutral.svg" alt="Carbon neutral"><span>This is a <span class="bold">carbon-neutral</span> delivery</span></p>
-            <button id="cart-confirm-btn" class="btn">Confirm Order</button>
-          </div>
-        </div>
-      </section>
-    </aside>
-  </div>
+		<title>Frontend Mentor | Product list with cart</title>
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/utility-classes.css" />
 
-  <div id="confirmation-modal" class="modal">
-    <div class="modal-content">
-      <img class="confirmation-icon" src="assets/images/icon-order-confirmed.svg" alt="">
-      <h3 class="modal-title">Order Confirm</h3>
-      <p class="modal-disclaimer">We hope you enjoy your food!</p>
-      <div id="modal-product-list">
-        <!-- Product list goes here -->
-      </div>
-      <div class="cart-total">
-        <span>Order Total</span>
-        <span id="modal-total-price" class="cart-total-price">
-          <!-- Total price goes here -->
-        </span>
-      </div>
-      <button id="modal-order-btn" class="btn">Start New Order</button>
-    </div>
-  </div>
+		<!-- Feel free to remove these styles or customize in your own stylesheet 👍 -->
+		<style>
+			.attribution {
+				font-size: 11px;
+				text-align: center;
+			}
+			.attribution a {
+				color: hsl(228, 45%, 44%);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<h1>Desserts</h1>
+			</header>
+			<main id="main">
+				<!-- Product cards goes here -->
+			</main>
+			<aside>
+				<section class="cart">
+					<h2 class="cart-title">
+						Your Cart (<span id="cart-quantity">0</span>)
+					</h2>
+					<div class="cart-content">
+						<div id="cart-empty" class="cart-empty active">
+							<img
+								class="cart-img"
+								src="assets/images/illustration-empty-cart.svg"
+								alt="No products"
+							/>
+							<p>Your added items will appear here</p>
+						</div>
+						<div id="cart-with-products" class="cart-with-desserts">
+							<div id="cart-list" class="cart-list">
+								<!-- Cart items goes here -->
+							</div>
+							<div class="cart-total">
+								<span>Order Total</span>
+								<span id="cart-total-price" class="cart-total-price">
+									<!-- Total price goes here -->
+								</span>
+							</div>
+							<p class="cart-disclaimer">
+								<img
+									src="assets/images/icon-carbon-neutral.svg"
+									alt="Carbon neutral"
+								/><span
+									>This is a
+									<span class="bold">carbon-neutral</span> delivery</span
+								>
+							</p>
+							<button id="cart-confirm-btn" class="btn">Confirm Order</button>
+						</div>
+					</div>
+				</section>
+			</aside>
+		</div>
 
-  <!-- Waffle with Berries
-  Waffle
-  6.50
-  Add to Cart
+		<div id="confirmation-modal" class="modal">
+			<div class="modal-content">
+				<img
+					class="confirmation-icon"
+					src="assets/images/icon-order-confirmed.svg"
+					alt=""
+				/>
+				<h3 class="modal-title">Order Confirm</h3>
+				<p class="modal-disclaimer">We hope you enjoy your food!</p>
+				<div id="modal-product-list">
+					<!-- Product list goes here -->
+				</div>
+				<div class="cart-total">
+					<span>Order Total</span>
+					<span id="modal-total-price" class="cart-total-price">
+						<!-- Total price goes here -->
+					</span>
+				</div>
+				<button id="modal-order-btn" class="btn">Start New Order</button>
+			</div>
+		</div>
 
-  Vanilla Bean Crème Brûlée
-  Crème Brûlée
-  7.00
-  Add to Cart
+		<template id="product-card-template">
+			<article class="product-card" data-product-name="">
+				<img class="product-img" src="" alt="" />
+				<div class="product-cart-btn">
+					<div class="add-to-cart">
+						<img src="assets/images/icon-add-to-cart.svg" alt="Cart Icon" /> Add
+						to Cart
+					</div>
+					<div class="quantity-controls">
+						<button class="product-decrement-btn">
+							<img
+								src="assets/images/icon-decrement-quantity.svg"
+								alt="Minus Icon"
+							/>
+						</button>
+						<span class="product-quantity" data-quantity="0">0</span>
+						<button class="product-increment-btn">
+							<img
+								src="assets/images/icon-increment-quantity.svg"
+								alt="Plus Icon"
+							/>
+						</button>
+					</div>
+				</div>
+				<div class="product-info">
+					<span class="product-category"></span>
+					<h2 class="product-name"></h2>
+					<span class="product-price"></span>
+				</div>
+			</article>
+		</template>
 
-  Macaron Mix of Five
-  Macaron
-  8.00
-  Add to Cart
+    <template id="cart-item-template">
+      <article class="cart-item">
+        <h5 class="cart-item-title"></h5>
+            <span class="cart-item-quantity"><span class="cart-item-quantity-value"></span>x</span>
+            <span class="cart-item-price"></span>
+            <button class="remove-item-btn"><img src="./assets/images/icon-remove-item.svg" alt="Remove item"></button>
+      </article>
+    </template>
 
-  Classic Tiramisu
-  Tiramisu
-  5.50
-  Add to Cart
-
-  Pistachio Baklava
-  Baklava
-  4.00
-  Add to Cart
-
-  Lemon Meringue Pie
-  Pie
-  5.00
-  Add to Cart
-
-  Red Velvet Cake
-  Cake
-  4.50
-  Add to Cart
-
-  Salted Caramel Brownie
-  Brownie
-  4.50
-  Add to Cart
-
-  Vanilla Panna Cotta
-  Panna Cotta
-  6.50
-  Add to Cart
-
-  Your Cart (-- Quantity --)
-  Your added items will appear here
-
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
-    Coded by <a href="#">Your Name Here</a>.
-  </div> -->
-  <script src="js/logic.js"></script>
-</body>
+    <template id="modal-product-template">
+      <article class="modal-product">
+        <img class="modal-product-image" src="" alt="" />
+            <h5 class="modal-product-title"></h5>
+            <div>
+                <span class="modal-product-quantity"><span class="modal-product-quantity-value"></span>x</span>
+                <span class="modal-product-price"></span>
+            <div/>
+      </article>
+    </template>
+		<script src="js/logic.js"></script>
+	</body>
 </html>
