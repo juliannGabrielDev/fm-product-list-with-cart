@@ -68,7 +68,7 @@ main {
 aside {
 	grid-area: aside;
 }
-/*Dessert card*/
+/*Product card*/
 .product-img {
 	width: 100%;
 	border-radius: 12px;
@@ -156,7 +156,11 @@ aside {
 	display: none;
 }
 .cart-list {
+	max-height: 400px;
 	padding-block: 16px;
+	overflow-y: auto;
+	scrollbar-width: thin;
+	scrollbar-gutter: stable;
 }
 .cart-item {
 	position: relative;
